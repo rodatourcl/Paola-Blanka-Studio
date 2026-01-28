@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paola Blanka | Hair & Makeup Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Lora:italic,wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1f2937; scroll-behavior: smooth; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Lora', serif; }
+        
+        .lang-node { display: none; }
+        .lang-active { display: block; }
+
+        .service-item { 
+            border-bottom: 1px solid #e5e7eb; 
+            transition: all 0.3s ease;
+        }
+        .service-item:hover { 
+            background-color: #f9fafb;
+            padding-left: 10px;
+        }
+        
+        .btn-minimal {
+            border: 1px solid #1f2937;
+            transition: all 0.3s ease;
+        }
+        .btn-minimal:hover {
+            background-color: #1f2937;
+            color: #ffffff;
+        }
+
+        .btn-hero {
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .btn-hero:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .loader {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #1f2937;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .image-grayscale {
+            filter: grayscale(100%);
+            transition: all 0.7s ease;
+        }
+        .image-grayscale:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        .info-card {
+            border-right: 1px solid #f3f4f6;
+        }
+        @media (max-width: 768px) {
+            .info-card { border-right: none; border-bottom: 1px solid #f3f4f6; }
+        }
+        .info-card:last-child { border: none; }
+
+        .category-title {
+            position: sticky;
+            top: 79px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 10;
+        }
+
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0 10px;
+        }
+        @media (min-width: 768px) {
+            .carousel-slide { min-width: 33.333%; }
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                              url('img/Paula.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="selection:bg-gray-100">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 h-20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+            <div class="text-lg font-bold tracking-[0.2em] uppercase text-gray-900">
+                Paola Blanka <span class="font-light text-gray-400">Studio</span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 text-[10px] uppercase tracking-widest font-bold items-center">
+                <a href="#about-grid" class="hover:text-gray-500 transition-colors">
+                    <span class="lang-pl lang-node lang-active">O nas</span>
+                    <span class="lang-en lang-node">Philosophy</span>
+                </a>
+                <a href="#servicios" class="hover:text-gray-500 transition-colors">
+                    <span class="lang-pl lang-node lang-active">Cennik</span>
+                    <span class="lang-en lang-node">Menu</span>
+                </a>
+                <a href="#portfolio" class="hover:text-gray-500 transition-colors">
+                    <span class="lang-pl lang-node lang-active">Galeria</span>
+                    <span class="lang-en lang-node">Portfolio</span>
+                </a>
+                <a href="#contacto" class="hover:text-gray-500 transition-colors">
+                    <span class="lang-pl lang-node lang-active">Kontakt</span>
+                    <span class="lang-en lang-node">Contact</span>
+                </a>
+                
+                <div class="flex gap-2 ml-4 border-l pl-4 border-gray-200">
+                    <button onclick="setLanguage('pl')" id="btn-pl" class="hover:text-gray-900 text-gray-900 font-black transition-all">PL</button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="hover:text-gray-900 text-gray-400 transition-all">EN</button>
+                </div>
+            </div>
+
+            <a href="#" class="btn-minimal px-6 py-2 text-[10px] uppercase font-bold tracking-widest">
+                <span class="lang-pl lang-node lang-active">Rezerwacja</span>
+                <span class="lang-en lang-node">Book Now</span>
+            </a>
+        </div>
+    </nav>
+
+    <header class="relative min-h-screen flex items-center pt-24 hero-bg">
+        <div class="max-w-7xl mx-auto px-6 text-center w-full z-10">
+            <span class="text-[10px] uppercase tracking-[0.6em] text-white/80 mb-6 block font-bold">
+                <span class="lang-pl lang-node lang-active">Doskonałość w pięknie</span>
+                <span class="lang-en lang-node">Excellence in Beauty</span>
+            </span>
+            <h1 class="text-5xl md:text-8xl font-bold text-white mb-8 leading-none">
+                Paola Blanka <br><span class="italic font-normal text-white/60">Studio.</span>
+            </h1>
+            <div class="mt-12 flex justify-center gap-6">
+                <a href="#servicios" class="btn-hero px-8 py-4 text-[10px] uppercase font-bold tracking-widest">
+                    <span class="lang-pl lang-node lang-active">Zobacz usługi</span>
+                    <span class="lang-en lang-node">View Services</span>
+                </a>
+            </div>
+            <div class="w-px h-24 bg-white/30 mx-auto mt-20"></div>
+        </div>
+    </header>
+
+    <section id="about-grid" class="py-20 border-t border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+                <div class="info-card p-10 flex flex-col items-center text-center">
+                    <div class="w-full aspect-[4/5] mb-8 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" alt="Misja" class="w-full h-full object-cover image-grayscale">
+                    </div>
+                    <h2 class="text-2xl font-bold mb-6 uppercase tracking-wider">
+                        <span class="lang-pl lang-node lang-active">Nasza Misja</span>
+                        <span class="lang-en lang-node">Our Mission</span>
+                    </h2>
+                    <div class="lang-pl lang-node lang-active text-gray-500 text-sm leading-relaxed text-left">
+                        <p>W Paola Blanka Studio dążymy do tworzenia wyjątkowych i spersonalizowanych doświadczeń dla każdego z naszych klientów. Staramy się podkreślać naturalne piękno naszych gości, sprawiając, że czują się pewni siebie i piękni.</p>
+                    </div>
+                    <div class="lang-en lang-node text-gray-500 text-sm leading-relaxed text-left">
+                        <p>At Paola Blanka Studio, we are dedicated to creating a unique and personalized experience for each and every one of our clients. We strive to enhance the natural beauty of our clients and make them feel confident and beautiful.</p>
+                    </div>
+                </div>
+
+                <div class="info-card p-10 flex flex-col items-center text-center">
+                    <div class="w-full aspect-[4/5] mb-8 overflow-hidden">
+                        <img src="img/ourTeam.webp" alt="Paula" class="w-full h-full object-cover image-grayscale">
+                    </div>
+                    <h2 class="text-2xl font-bold mb-6 uppercase tracking-wider">
+                        <span class="lang-pl lang-node lang-active">Nasz Zespół</span>
+                        <span class="lang-en lang-node">Our Team</span>
+                    </h2>
+                    <div class="lang-pl lang-node lang-active text-gray-500 text-sm leading-relaxed text-left">
+                        <p>Poznaj Paulę, założycielkę i główną stylistkę Paola Blanka Hair and Makeup. Dzięki bogatemu doświadczeniu jako specjalistka od przedłużania włosów i wizażystka, Paula zyskała reputację twórczyni zachwycających metamorfoz.</p>
+                    </div>
+                    <div class="lang-en lang-node text-gray-500 text-sm leading-relaxed text-left">
+                        <p>Meet Paula, the founder and head stylist of Paola Blanka Hair and Makeup. With extensive experience as a hair extensions specialist and makeup artist, Paula has built a reputation for creating stunning transformations.</p>
+                    </div>
+                </div>
+
+                <div class="info-card p-10 flex flex-col items-center text-center">
+                    <div class="w-full aspect-[4/5] mb-8 overflow-hidden">
+                        <img src="img/outServices.webp" alt="Usługi" class="w-full h-full object-cover image-grayscale">
+                    </div>
+                    <h2 class="text-2xl font-bold mb-6 uppercase tracking-wider">
+                        <span class="lang-pl lang-node lang-active">Nasze Usługi</span>
+                        <span class="lang-en lang-node">Our Services</span>
+                    </h2>
+                    <div class="lang-pl lang-node lang-active text-gray-500 text-sm leading-relaxed text-left">
+                        <p>W Paola Blanka Studio oferujemy szeroką gamę luksusowych usług fryzjerskich, w tym koloryzację, strzyżenie oraz makijaż i stylizację na specjalne okazje. Specjalizujemy się w przedłużaniu włosów robionym na zamówienie, nanoplastii oraz zabiegach wygładzających, używając wyłącznie produktów najwyższej jakości.</p>
+                    </div>
+                    <div class="lang-en lang-node text-gray-500 text-sm leading-relaxed text-left">
+                        <p>At Paola Blanka Studio, we provide an array of premium hair services, including colouring, cutting and makeup and styling for special occasions. Specialising in custom-made hair extensions, Nanoplasty and Hair Smoothing treatments, we use only top-quality products to keep your hair healthy and looking its best.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-32 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-4 block font-bold">Menu</span>
+                <h2 class="text-4xl font-bold text-gray-900">
+                    <span class="lang-pl lang-node lang-active">Cennik Zabiegów</span>
+                    <span class="lang-en lang-node">Treatment Pricing</span>
+                </h2>
+            </div>
+
+            <div id="loading-state" class="flex flex-col items-center py-12">
+                <div class="loader mb-4"></div>
+                <p class="text-[10px] uppercase tracking-widest text-gray-400 italic">Syncing with Google Sheets...</p>
+            </div>
+            
+            <div id="error-state" class="hidden text-center py-12">
+                <p class="text-red-400 text-xs uppercase tracking-widest mb-4">Connection issue.</p>
+                <button onclick="fetchSheetData()" class="text-[10px] underline uppercase tracking-widest">Try Reconnecting</button>
+            </div>
+
+            <div id="services-groups" class="space-y-20 hidden"></div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-start justify-between mb-16 gap-8">
+                <div class="max-w-2xl">
+                    <span class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-4 block font-bold">Portfolio</span>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                        <span class="lang-pl lang-node lang-active">Nasze Metamorfozy</span>
+                        <span class="lang-en lang-node">Our Work</span>
+                    </h2>
+                </div>
+                <div class="flex gap-4 self-end">
+                    <button onclick="moveCarousel(-1)" class="w-12 h-12 border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="moveCarousel(1)" class="w-12 h-12 border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-slide"><img src="img/carrusel1.webp" class="w-full aspect-[3/4] object-cover image-grayscale"></div>
+                    <div class="carousel-slide"><img src="img/carrusel2.webp" class="w-full aspect-[3/4] object-cover image-grayscale"></div>
+                    <div class="carousel-slide"><img src="img/carrusel3.webp" class="w-full aspect-[3/4] object-cover image-grayscale"></div>
+                    <div class="carousel-slide"><img src="img/carrusel4.webp" class="w-full aspect-[3/4] object-cover image-grayscale"></div>
+                    <div class="carousel-slide"><img src="img/carrusel5.webp" class="w-full aspect-[3/4] object-cover image-grayscale"></div>
+                    <div class="carousel-slide"><img src="img/carrusel6.webp" class="w-full aspect-[3/4] object-cover image-grayscale"></div>
+                    <div class="carousel-slide"><img src="img/carrusel7.webp" class="w-full aspect-[3/4] object-cover image-grayscale"></div>
+                    <div class="carousel-slide"><img src="img/carrusel8.webp" class="w-full aspect-[3/4] object-cover image-grayscale"></div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="py-24 bg-gray-50 border-t border-gray-100 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-2xl font-bold tracking-[0.2em] uppercase text-gray-900 mb-8">
+                Paola Blanka <span class="font-light text-gray-400">Studio</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-[10px] uppercase tracking-[0.2em] font-bold">
+                <div>
+                    <h5 class="text-gray-400 mb-4">Location</h5>
+                    <p class="text-gray-900">Your Street Name 123<br>City, Country</p>
+                </div>
+                <div>
+                    <h5 class="text-gray-400 mb-4">Contact</h5>
+                    <p class="text-gray-900">hello@paolablanka.com<br>+48 123 456 789</p>
+                </div>
+                <div>
+                    <h5 class="text-gray-400 mb-4">Social</h5>
+                    <div class="flex justify-center gap-4 mt-2">
+                        <a href="#" class="hover:text-gray-400">Instagram</a>
+                        <a href="#" class="hover:text-gray-400">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-gray-300 text-[9px] tracking-[0.4em] uppercase">Copyright © 2025 Paola Blanka Studio - All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSC00_u6RceZhD-McdhROddFFnC0Ve2pHw9OO-ctlG78weOlbDDgtCK6cUnnzjfAf-XFmjL3NOnt0E-/pub?gid=0&single=true&output=csv'; 
+        let currentLang = 'pl';
+        let servicesData = [];
+
+        const clean = (text) => text ? text.replace(/^"|"$/g, '').trim() : "";
+
+        // Función robusta para parsear CSV que maneja comas dentro de comillas
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current);
+            return result;
+        }
+
+        async function fetchSheetData() {
+            const container = document.getElementById('services-groups');
+            const loader = document.getElementById('loading-state');
+            const errorView = document.getElementById('error-state');
+
+            loader.classList.remove('hidden');
+            errorView.classList.add('hidden');
+            container.classList.add('hidden');
+
+            try {
+                const response = await fetch(`${SHEET_CSV_URL}&t=${Date.now()}`);
+                if (!response.ok) throw new Error('Error de red');
+                
+                const csvText = await response.text();
+                // Dividimos por líneas, pero manejamos posibles saltos de línea dentro de celdas si fuera necesario
+                const rows = csvText.split(/\r?\n/).filter(row => row.trim() !== "");
+                
+                // Procesar filas saltando la cabecera
+                servicesData = rows.slice(1).map(row => {
+                    const cols = parseCSVLine(row);
+                    return {
+                        cat: clean(cols[0]) || 'Other',
+                        sPL: clean(cols[1]),
+                        dPL: clean(cols[2]),
+                        sEN: clean(cols[3]),
+                        dEN: clean(cols[4]),
+                        price: clean(cols[5]) || '—'
+                    };
+                }).filter(item => item.sPL !== '' || item.sEN !== ''); 
+
+                if (servicesData.length === 0) throw new Error('No hay datos');
+                
+                renderGroups();
+                loader.classList.add('hidden');
+                container.classList.remove('hidden');
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                loader.classList.add('hidden');
+                errorView.classList.remove('hidden');
+            }
+        }
+
+        function renderGroups() {
+            const container = document.getElementById('services-groups');
+            
+            const grouped = servicesData.reduce((acc, item) => {
+                const category = item.cat || 'General';
+                if (!acc[category]) acc[category] = [];
+                acc[category].push(item);
+                return acc;
+            }, {});
+
+            container.innerHTML = Object.keys(grouped).map(category => `
+                <div class="category-block">
+                    <div class="category-title py-4 mb-6 border-b-2 border-gray-900">
+                        <h3 class="text-xs font-black uppercase tracking-[0.4em] text-gray-900">${category}</h3>
+                    </div>
+                    <div class="divide-y divide-gray-100">
+                        ${grouped[category].map(item => {
+                            const name = currentLang === 'pl' ? (item.sPL || item.sEN) : (item.sEN || item.sPL);
+                            const desc = currentLang === 'pl' ? item.dPL : (item.dEN || item.dPL);
+                            return `
+                                <div class="service-item py-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                    <div class="max-w-md">
+                                        <h4 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-1">${name || 'Unnamed Service'}</h4>
+                                        ${desc ? `<p class="text-gray-400 text-[11px] italic font-serif leading-relaxed">${desc}</p>` : ''}
+                                    </div>
+                                    <div class="text-sm font-semibold text-gray-900 tracking-tighter">${item.price}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-node').forEach(node => node.classList.remove('lang-active'));
+            document.querySelectorAll('.lang-' + lang).forEach(node => node.classList.add('lang-active'));
+            document.getElementById('btn-pl').className = (lang === 'pl') ? 'text-gray-900 font-black transition-all' : 'text-gray-400 transition-all';
+            document.getElementById('btn-en').className = (lang === 'en') ? 'text-gray-900 font-black transition-all' : 'text-gray-400 transition-all';
+            renderGroups();
+        }
+
+        let currentSlide = 0;
+        function moveCarousel(direction) {
+            const track = document.getElementById('carousel-track');
+            const slides = track.querySelectorAll('.carousel-slide');
+            const slidesVisible = window.innerWidth >= 768 ? 3 : 1;
+            const maxSlide = slides.length - slidesVisible;
+            
+            currentSlide = Math.max(0, Math.min(maxSlide, currentSlide + direction));
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carousel-track');
+            const slidesVisible = window.innerWidth >= 768 ? 3 : 1;
+            track.style.transform = `translateX(-${currentSlide * (100 / slidesVisible)}%)`;
+        }
+
+        window.onload = () => {
+            lucide.createIcons();
+            fetchSheetData();
+        };
+    </script>
+</body>
+</html>
