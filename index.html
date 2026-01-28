@@ -100,17 +100,28 @@
             background-position: center;
             background-attachment: fixed;
         }
+
+        /* Mobile Menu Styles */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
     </style>
 </head>
-<body class="selection:bg-gray-100">
+<body class="selection:bg-gray-100 overflow-x-hidden">
 
+    <!-- Navegación -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 h-20">
         <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
-            <div class="text-lg font-bold tracking-[0.2em] uppercase text-gray-900">
+            <div class="text-base md:text-lg font-bold tracking-[0.2em] uppercase text-gray-900">
                 Paola Blanka <span class="font-light text-gray-400">Studio</span>
             </div>
             
-            <div class="hidden md:flex gap-8 text-[10px] uppercase tracking-widest font-bold items-center">
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex gap-8 text-[10px] uppercase tracking-widest font-bold items-center">
                 <a href="#about-grid" class="hover:text-gray-500 transition-colors">
                     <span class="lang-pl lang-node lang-active">O nas</span>
                     <span class="lang-en lang-node">Philosophy</span>
@@ -132,14 +143,54 @@
                     <button onclick="setLanguage('pl')" id="btn-pl" class="hover:text-gray-900 text-gray-900 font-black transition-all">PL</button>
                     <button onclick="setLanguage('en')" id="btn-en" class="hover:text-gray-900 text-gray-400 transition-all">EN</button>
                 </div>
+
+                <a href="#" class="btn-minimal px-6 py-2 text-[10px] uppercase font-bold tracking-widest">
+                    <span class="lang-pl lang-node lang-active">Rezerwacja</span>
+                    <span class="lang-en lang-node">Book Now</span>
+                </a>
             </div>
 
-            <a href="#" class="btn-minimal px-6 py-2 text-[10px] uppercase font-bold tracking-widest">
+            <!-- Mobile Burger -->
+            <button class="lg:hidden p-2" onclick="toggleMenu(true)">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Menú Móvil Lateral -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] p-8 lg:hidden flex flex-col">
+        <button class="self-end mb-8 p-2" onclick="toggleMenu(false)">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        
+        <div class="flex flex-col gap-6 text-xl uppercase tracking-[0.2em] font-bold">
+            <a href="#about-grid" onclick="toggleMenu(false)">
+                <span class="lang-pl lang-node lang-active">O nas</span>
+                <span class="lang-en lang-node">Philosophy</span>
+            </a>
+            <a href="#servicios" onclick="toggleMenu(false)">
+                <span class="lang-pl lang-node lang-active">Cennik</span>
+                <span class="lang-en lang-node">Menu</span>
+            </a>
+            <a href="#portfolio" onclick="toggleMenu(false)">
+                <span class="lang-pl lang-node lang-active">Galeria</span>
+                <span class="lang-en lang-node">Portfolio</span>
+            </a>
+            <a href="#contacto" onclick="toggleMenu(false)">
+                <span class="lang-pl lang-node lang-active">Kontakt</span>
+                <span class="lang-en lang-node">Contact</span>
+            </a>
+            <a href="#" class="mt-4 inline-block btn-minimal px-8 py-4 text-xs text-center">
                 <span class="lang-pl lang-node lang-active">Rezerwacja</span>
                 <span class="lang-en lang-node">Book Now</span>
             </a>
         </div>
-    </nav>
+
+        <div class="mt-auto pt-8 border-t flex gap-6 text-sm font-bold uppercase tracking-widest">
+            <button onclick="setLanguage('pl')" class="text-gray-900">PL</button>
+            <button onclick="setLanguage('en')" class="text-gray-400">EN</button>
+        </div>
+    </div>
 
     <header class="relative min-h-screen flex items-center pt-24 hero-bg">
         <div class="max-w-7xl mx-auto px-6 text-center w-full z-10">
@@ -147,7 +198,7 @@
                 <span class="lang-pl lang-node lang-active">Doskonałość w pięknie</span>
                 <span class="lang-en lang-node">Excellence in Beauty</span>
             </span>
-            <h1 class="text-5xl md:text-8xl font-bold text-white mb-8 leading-none">
+            <h1 class="text-4xl md:text-8xl font-bold text-white mb-8 leading-tight">
                 Paola Blanka <br><span class="italic font-normal text-white/60">Studio.</span>
             </h1>
             <div class="mt-12 flex justify-center gap-6">
@@ -156,14 +207,14 @@
                     <span class="lang-en lang-node">View Services</span>
                 </a>
             </div>
-            <div class="w-px h-24 bg-white/30 mx-auto mt-20"></div>
+            <div class="w-px h-16 md:h-24 bg-white/30 mx-auto mt-20"></div>
         </div>
     </header>
 
-    <section id="about-grid" class="py-20 border-t border-b border-gray-100">
+    <section id="about-grid" class="py-16 md:py-20 border-t border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
-                <div class="info-card p-10 flex flex-col items-center text-center">
+                <div class="info-card p-6 md:p-10 flex flex-col items-center text-center">
                     <div class="w-full aspect-[4/5] mb-8 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" alt="Misja" class="w-full h-full object-cover image-grayscale">
                     </div>
@@ -179,7 +230,7 @@
                     </div>
                 </div>
 
-                <div class="info-card p-10 flex flex-col items-center text-center">
+                <div class="info-card p-6 md:p-10 flex flex-col items-center text-center">
                     <div class="w-full aspect-[4/5] mb-8 overflow-hidden">
                         <img src="img/ourTeam.webp" alt="Paula" class="w-full h-full object-cover image-grayscale">
                     </div>
@@ -195,7 +246,7 @@
                     </div>
                 </div>
 
-                <div class="info-card p-10 flex flex-col items-center text-center">
+                <div class="info-card p-6 md:p-10 flex flex-col items-center text-center">
                     <div class="w-full aspect-[4/5] mb-8 overflow-hidden">
                         <img src="img/outServices.webp" alt="Usługi" class="w-full h-full object-cover image-grayscale">
                     </div>
@@ -204,21 +255,21 @@
                         <span class="lang-en lang-node">Our Services</span>
                     </h2>
                     <div class="lang-pl lang-node lang-active text-gray-500 text-sm leading-relaxed text-left">
-                        <p>W Paola Blanka Studio oferujemy szeroką gamę luksusowych usług fryzjerskich, w tym koloryzację, strzyżenie oraz makijaż i stylizację na specjalne okazje. Specjalizujemy się w przedłużaniu włosów robionym na zamówienie, nanoplastii oraz zabiegach wygładzających, używając wyłącznie produktów najwyższej jakości.</p>
+                        <p>W Paola Blanka Studio oferujemy szeroką gamę luksusowych usług fryzjerskich, w tym koloryzację, strzyżenie oraz makijaż i stylizację na specjalne okazje. Specjalizujemy się w przedłużaniu włosów robionym na zamówienie, nanoplastii oraz zabiegach wygładzających.</p>
                     </div>
                     <div class="lang-en lang-node text-gray-500 text-sm leading-relaxed text-left">
-                        <p>At Paola Blanka Studio, we provide an array of premium hair services, including colouring, cutting and makeup and styling for special occasions. Specialising in custom-made hair extensions, Nanoplasty and Hair Smoothing treatments, we use only top-quality products to keep your hair healthy and looking its best.</p>
+                        <p>At Paola Blanka Studio, we provide an array of premium hair services, including colouring, cutting and makeup. Specialising in custom-made hair extensions, Nanoplasty and Hair Smoothing treatments.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="servicios" class="py-32 bg-gray-50">
+    <section id="servicios" class="py-24 md:py-32 bg-gray-50">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16">
                 <span class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-4 block font-bold">Menu</span>
-                <h2 class="text-4xl font-bold text-gray-900">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
                     <span class="lang-pl lang-node lang-active">Cennik Zabiegów</span>
                     <span class="lang-en lang-node">Treatment Pricing</span>
                 </h2>
@@ -234,21 +285,21 @@
                 <button onclick="fetchSheetData()" class="text-[10px] underline uppercase tracking-widest">Try Reconnecting</button>
             </div>
 
-            <div id="services-groups" class="space-y-20 hidden"></div>
+            <div id="services-groups" class="space-y-16 md:space-y-20 hidden"></div>
         </div>
     </section>
 
-    <section id="portfolio" class="py-32 bg-white">
+    <section id="portfolio" class="py-24 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-start justify-between mb-16 gap-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
                 <div class="max-w-2xl">
                     <span class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-4 block font-bold">Portfolio</span>
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
                         <span class="lang-pl lang-node lang-active">Nasze Metamorfozy</span>
                         <span class="lang-en lang-node">Our Work</span>
                     </h2>
                 </div>
-                <div class="flex gap-4 self-end">
+                <div class="flex gap-4">
                     <button onclick="moveCarousel(-1)" class="w-12 h-12 border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all">
                         <i data-lucide="chevron-left" class="w-5 h-5"></i>
                     </button>
@@ -274,9 +325,9 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contacto" class="py-24 bg-gray-50 border-t border-gray-100 text-center">
+    <footer id="contacto" class="py-20 bg-gray-50 border-t border-gray-100 text-center">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-2xl font-bold tracking-[0.2em] uppercase text-gray-900 mb-8">
+            <div class="text-xl font-bold tracking-[0.2em] uppercase text-gray-900 mb-12">
                 Paola Blanka <span class="font-light text-gray-400">Studio</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-[10px] uppercase tracking-[0.2em] font-bold">
@@ -296,7 +347,7 @@
                     </div>
                 </div>
             </div>
-            <p class="text-gray-300 text-[9px] tracking-[0.4em] uppercase">Copyright © 2025 Paola Blanka Studio - All Rights Reserved.</p>
+            <p class="text-gray-300 text-[9px] tracking-[0.4em] uppercase">Copyright © 2025 Paola Blanka Studio.</p>
         </div>
     </footer>
 
@@ -307,21 +358,28 @@
 
         const clean = (text) => text ? text.replace(/^"|"$/g, '').trim() : "";
 
-        // Función robusta para parsear CSV que maneja comas dentro de comillas
+        function toggleMenu(show) {
+            const menu = document.getElementById('mobile-menu');
+            if(show) {
+                menu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         function parseCSVLine(line) {
             const result = [];
             let current = '';
             let inQuotes = false;
             for (let i = 0; i < line.length; i++) {
                 const char = line[i];
-                if (char === '"') {
-                    inQuotes = !inQuotes;
-                } else if (char === ',' && !inQuotes) {
+                if (char === '"') inQuotes = !inQuotes;
+                else if (char === ',' && !inQuotes) {
                     result.push(current);
                     current = '';
-                } else {
-                    current += char;
-                }
+                } else current += char;
             }
             result.push(current);
             return result;
@@ -332,19 +390,13 @@
             const loader = document.getElementById('loading-state');
             const errorView = document.getElementById('error-state');
 
-            loader.classList.remove('hidden');
-            errorView.classList.add('hidden');
-            container.classList.add('hidden');
-
             try {
                 const response = await fetch(`${SHEET_CSV_URL}&t=${Date.now()}`);
-                if (!response.ok) throw new Error('Error de red');
+                if (!response.ok) throw new Error('Network error');
                 
                 const csvText = await response.text();
-                // Dividimos por líneas, pero manejamos posibles saltos de línea dentro de celdas si fuera necesario
                 const rows = csvText.split(/\r?\n/).filter(row => row.trim() !== "");
                 
-                // Procesar filas saltando la cabecera
                 servicesData = rows.slice(1).map(row => {
                     const cols = parseCSVLine(row);
                     return {
@@ -357,7 +409,7 @@
                     };
                 }).filter(item => item.sPL !== '' || item.sEN !== ''); 
 
-                if (servicesData.length === 0) throw new Error('No hay datos');
+                if (servicesData.length === 0) throw new Error('No data');
                 
                 renderGroups();
                 loader.classList.add('hidden');
@@ -371,7 +423,6 @@
 
         function renderGroups() {
             const container = document.getElementById('services-groups');
-            
             const grouped = servicesData.reduce((acc, item) => {
                 const category = item.cat || 'General';
                 if (!acc[category]) acc[category] = [];
@@ -389,10 +440,10 @@
                             const name = currentLang === 'pl' ? (item.sPL || item.sEN) : (item.sEN || item.sPL);
                             const desc = currentLang === 'pl' ? item.dPL : (item.dEN || item.dPL);
                             return `
-                                <div class="service-item py-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="service-item py-6 md:py-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                                     <div class="max-w-md">
                                         <h4 class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-1">${name || 'Unnamed Service'}</h4>
-                                        ${desc ? `<p class="text-gray-400 text-[11px] italic font-serif leading-relaxed">${desc}</p>` : ''}
+                                        ${desc ? `<p class="text-gray-400 text-[10px] md:text-[11px] italic font-serif leading-relaxed">${desc}</p>` : ''}
                                     </div>
                                     <div class="text-sm font-semibold text-gray-900 tracking-tighter">${item.price}</div>
                                 </div>
@@ -407,8 +458,11 @@
             currentLang = lang;
             document.querySelectorAll('.lang-node').forEach(node => node.classList.remove('lang-active'));
             document.querySelectorAll('.lang-' + lang).forEach(node => node.classList.add('lang-active'));
-            document.getElementById('btn-pl').className = (lang === 'pl') ? 'text-gray-900 font-black transition-all' : 'text-gray-400 transition-all';
-            document.getElementById('btn-en').className = (lang === 'en') ? 'text-gray-900 font-black transition-all' : 'text-gray-400 transition-all';
+            
+            const btns = ['pl', 'en'];
+            btns.forEach(b => {
+                document.getElementById('btn-'+b).className = (lang === b) ? 'text-gray-900 font-black transition-all' : 'text-gray-400 transition-all';
+            });
             renderGroups();
         }
 
@@ -432,6 +486,11 @@
         window.onload = () => {
             lucide.createIcons();
             fetchSheetData();
+        };
+
+        window.onresize = () => {
+            currentSlide = 0;
+            updateCarousel();
         };
     </script>
 </body>
