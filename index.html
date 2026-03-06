@@ -125,12 +125,20 @@
         .carousel-nav-prev { left: 1.5rem; }
         .carousel-nav-next { right: 1.5rem; }
 
+        /* Optimización de Imagen Hero para móviles e iOS */
         .hero-bg {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                              url('img/Paula.webp');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-attachment: scroll; /* Scroll en móvil para evitar fallos en iOS */
+        }
+
+        @media (min-width: 1024px) {
+            .hero-bg {
+                background-attachment: fixed; /* Parallax solo en desktop */
+            }
         }
 
         #mobile-menu {
@@ -146,8 +154,9 @@
 
     <!-- Nav -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 h-20">
-        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
-            <div class="text-lg font-bold tracking-[0.2em] uppercase text-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-full flex justify-between items-center gap-2">
+            <!-- Logo Section -->
+            <div class="text-[11px] sm:text-lg font-bold tracking-[0.1em] sm:tracking-[0.2em] uppercase text-gray-900 whitespace-nowrap shrink-0">
                 Paola Blanka <span class="font-light text-gray-400">Studio</span>
             </div>
             
@@ -181,14 +190,15 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-4">
-                <a href="https://booksy.com/pl-pl/335341_paola-blanka-hair-makeup_fryzjer_5869_bialystok#ba_s=sh_1" target="_blank" class="btn-minimal px-6 py-2 text-[10px] uppercase font-bold tracking-widest hidden sm:block">
+            <!-- Action Section -->
+            <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+                <a href="https://booksy.com/pl-pl/335341_paola-blanka-hair-makeup_fryzjer_5869_bialystok#ba_s=sh_1" target="_blank" class="btn-minimal px-3 sm:px-6 py-1.5 sm:py-2 text-[9px] sm:text-[10px] uppercase font-bold tracking-widest block whitespace-nowrap">
                     <span class="lang-pl lang-node lang-active">Rezerwacja</span>
                     <span class="lang-en lang-node">Book Now</span>
                     <span class="lang-es lang-node">Reservar</span>
                 </a>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-900 p-2">
-                    <i data-lucide="menu" id="menu-icon"></i>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-900 p-1 sm:p-2">
+                    <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
                 </button>
             </div>
         </div>
@@ -421,8 +431,7 @@
                         <span class="lang-es lang-node">Social</span>
                     </h5>
                     <div class="flex justify-center gap-4 mt-2">
-                        <a href="https://www.instagram.com/paolablankahairandmakeup?igsh=MW5oNW9tOGRmaXNhbA%3D%3D" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition-colors">Instagram</a>
-                        <!--<a href="#" class="hover:text-gray-400">Facebook</a> -->
+                        <a href="https://www.instagram.com/paolablankahairandmakeup?igsh=MW5oNW9tOGRmaXNhbA%3D%3D" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition-colors uppercase tracking-widest">Instagram</a>
                     </div>
                 </div>
             </div>
